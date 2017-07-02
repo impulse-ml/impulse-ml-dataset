@@ -10,6 +10,18 @@ DatasetSample::DatasetSample(std::vector<std::string> * vec) {
 	this->rawData = std::vector<std::string>(vec->begin(), vec->end());
 }
 
+DatasetSample::DatasetSample(std::vector<double> vec) {
+	for (unsigned int i = 0; i < vec.size(); i++) {
+		this->rawData.push_back(std::to_string(vec.at(i)));
+	}
+}
+
+DatasetSample::DatasetSample(std::initializer_list<double> list) {
+	for (auto i = list.begin(); i != list.end(); i++) {
+		this->rawData.push_back(std::to_string(*i));
+	}
+}
+
 void DatasetSample::out() {
 	for (unsigned int i = 0; i < this->rawData.size() - 1; i++) {
 		std::cout << this->rawData.at(i) << ',';
@@ -53,6 +65,14 @@ unsigned int DatasetSample::getSize() {
 Impulse::DatasetSample DatasetSample::copy() {
 	std::vector<std::string> copiedData(this->rawData);
 	Impulse::DatasetSample result(copiedData);
+	return result;
+}
+
+std::vector<double> DatasetSample::exportToDoubleVector() {
+	std::vector<double> result;
+	for (unsigned int i = 0; i < this->getSize(); i++) {
+		result.push_back(this->getColumnToDouble(i));
+	}
 	return result;
 }
 

@@ -15,7 +15,7 @@ int main() {
 	dataset.out();
 
 	// and start modification - slice to input-output pair
-	Impulse::DatasetSlicer datasetSlicer(&dataset);
+	Impulse::DatasetModifier::DatasetSlicer datasetSlicer(&dataset);
 	datasetSlicer.addInputColumn(0);
 	datasetSlicer.addInputColumn(1);
 	datasetSlicer.addInputColumn(2);
@@ -57,10 +57,10 @@ int main() {
 	Impulse::DatasetModifier::Modifier::ZScoresScaling zScoresModifier(
 			&slicedDataset.input);
 
-	zScoresModifier.applyToAll();
+	zScoresModifier.apply();
 
 	// we can split dataset by parts of given ratio
-	Impulse::DatasetSplitter datasetSplitter(&slicedDataset);
+	Impulse::DatasetModifier::DatasetSplitter datasetSplitter(&slicedDataset);
 	Impulse::SplittedDataset splittedDataset = datasetSplitter.split(0.8);
 
 	splittedDataset.primary.input.out();

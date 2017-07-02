@@ -37,4 +37,11 @@ unsigned int Dataset::getSize() {
 	return this->data.size();
 }
 
+unsigned int Dataset::getColumnsSize() {
+	if (this->getSize() > 0) {
+		return this->data.at(0).getSize();
+	}
+	return 0;
+}
+
 }

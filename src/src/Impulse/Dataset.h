@@ -20,6 +20,7 @@ public:
 	Impulse::DatasetSample * getSampleAt(int index);
 	void out(unsigned int limit = 10);
 	unsigned int getSize();
+	unsigned int getColumnsSize();
 };
 
 }

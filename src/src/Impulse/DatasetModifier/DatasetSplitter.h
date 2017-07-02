@@ -11,6 +11,8 @@ struct SplittedDataset {
 	Impulse::SlicedDataset secondary;
 };
 
+namespace DatasetModifier {
+
 class DatasetSplitter {
 protected:
 	Impulse::SlicedDataset * slicedDataset;
@@ -18,6 +20,8 @@ public:
 	DatasetSplitter(Impulse::SlicedDataset * slicedDataset);
 	Impulse::SplittedDataset split(double ratio);
 };
+
+}
 
 }
 

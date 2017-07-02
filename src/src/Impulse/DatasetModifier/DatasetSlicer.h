@@ -14,6 +14,8 @@ struct SlicedDataset {
 	Impulse::Dataset output;
 };
 
+namespace DatasetModifier {
+
 class DatasetSlicer {
 protected:
 	Impulse::Dataset * dataset;
@@ -25,6 +27,8 @@ public:
 	void addOutputColumn(int columnIndex);
 	Impulse::SlicedDataset slice();
 };
+
+}
 
 }
 

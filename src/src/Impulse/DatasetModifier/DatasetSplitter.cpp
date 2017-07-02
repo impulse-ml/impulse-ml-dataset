@@ -2,6 +2,8 @@
 
 namespace Impulse {
 
+namespace DatasetModifier {
+
 DatasetSplitter::DatasetSplitter(Impulse::SlicedDataset * _dataset) {
 	this->slicedDataset = _dataset;
 }
@@ -26,6 +28,8 @@ Impulse::SplittedDataset DatasetSplitter::split(double ratio) {
 	}
 
 	return result;
+}
+
 }
 
 }

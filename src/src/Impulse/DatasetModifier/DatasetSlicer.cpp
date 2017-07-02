@@ -2,6 +2,8 @@
 
 namespace Impulse {
 
+namespace DatasetModifier {
+
 DatasetSlicer::DatasetSlicer(Impulse::Dataset * _dataset) :
 		dataset(_dataset) {
 
@@ -44,6 +46,8 @@ void DatasetSlicer::addInputColumn(int columnIndex) {
 
 void DatasetSlicer::addOutputColumn(int columnIndex) {
 	this->outputColumns.push_back(columnIndex);
+}
+
 }
 
 }

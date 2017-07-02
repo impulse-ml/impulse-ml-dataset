@@ -14,16 +14,20 @@ protected:
 public:
 	DatasetSample(std::vector<std::string> vec);
 	DatasetSample(std::vector<std::string> * vec);
+	DatasetSample(std::vector<double> vec);
+	DatasetSample(std::initializer_list<double> list);
 	void out();
 	std::string getColumnToString(int columnIndex);
 	double getColumnToDouble(int columnIndex);
 	void setColumn(int columnIndex, std::string value);
 	void setColumn(int columnIndex, double value);
-	void setColumn(int columnIndex, std::function<std::string(std::string)> callback);
+	void setColumn(int columnIndex,
+			std::function<std::string(std::string)> callback);
 	void insertColumnAfter(int columnIndex, std::string value);
 	void removeColumnAt(int columnIndex);
 	unsigned int getSize();
 	Impulse::DatasetSample copy();
+	std::vector<double> exportToDoubleVector();
 };
 
 }

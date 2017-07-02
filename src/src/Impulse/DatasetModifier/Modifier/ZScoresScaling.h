@@ -2,6 +2,8 @@
 #define SRC_IMPULSE_DATASETMODIFIER_ZSCORESSCALINGDATASETMODIFIER_H_
 
 #include <math.h>
+#include <vector>
+#include <functional>
 #include "../../Dataset.h"
 #include "../BaseDatasetModifier.h"
 
@@ -19,8 +21,8 @@ public:
 	}
 	virtual ~ZScoresScaling() {
 	}
-	;
 	void applyToColumn(int columnIndex);
+	std::vector<double> applyToSample(std::initializer_list<double> list);
 };
 
 }
