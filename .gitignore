@@ -3,3 +3,6 @@ Release/
 .cproject
 .project
 .settings/
+.idea/
+cmake-build-debug/
+cmake-build-release/

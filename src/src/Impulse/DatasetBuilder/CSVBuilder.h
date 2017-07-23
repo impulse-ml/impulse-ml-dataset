@@ -10,28 +10,33 @@
 
 namespace Impulse {
 
-namespace DatasetBuilder {
+    namespace DatasetBuilder {
 
-enum class CSVState {
-	UnquotedField, QuotedField, QuotedQuote
-};
+        enum class CSVState {
+            UnquotedField, QuotedField, QuotedQuote
+        };
 
-class CSVBuilder: public Impulse::DatasetBuilder::BaseBuilder {
+        class CSVBuilder : public Impulse::DatasetBuilder::BaseBuilder {
 
-protected:
-	std::string path;
-	std::ifstream fileHandle;
-	void openFile();
-	void closeFile();
-	std::vector<std::string> parseLine(std::string & line);
+        protected:
+            std::string path;
+            std::ifstream fileHandle;
 
-public:
-	CSVBuilder(std::string p);
-	virtual ~CSVBuilder();
-	virtual Impulse::Dataset build();
-};
+            void openFile();
 
-}
+            void closeFile();
+
+            std::vector<std::string> parseLine(std::string &line);
+
+        public:
+            CSVBuilder(std::string p);
+
+            virtual ~CSVBuilder();
+
+            virtual Impulse::Dataset build();
+        };
+
+    }
 
 }
 

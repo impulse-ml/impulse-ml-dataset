@@ -8,21 +8,24 @@
 
 namespace Impulse {
 
-namespace DatasetModifier {
+    namespace DatasetModifier {
 
-class BaseDatasetModifier {
-protected:
-	Impulse::Dataset * dataset;
-	std::map<std::string, std::map<double, std::string>> data;
-public:
-	BaseDatasetModifier(Impulse::Dataset * dataset);
-	virtual ~BaseDatasetModifier() {
-	}
-	void apply(void);
-	virtual void applyToColumn(int columnIndex) = 0;
-};
+        class BaseDatasetModifier {
+        protected:
+            Impulse::Dataset *dataset;
+            std::map<std::string, std::map<double, std::string>> data;
+        public:
+            BaseDatasetModifier(Impulse::Dataset *dataset);
 
-}
+            virtual ~BaseDatasetModifier() {
+            }
+
+            void apply(void);
+
+            virtual void applyToColumn(int columnIndex) = 0;
+        };
+
+    }
 
 }
 

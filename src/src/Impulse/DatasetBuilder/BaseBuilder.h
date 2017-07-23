@@ -8,19 +8,22 @@
 
 namespace Impulse {
 
-namespace DatasetBuilder {
+    namespace DatasetBuilder {
 
-class BaseBuilder {
-protected:
-	Impulse::Dataset dataset;
-	Impulse::DatasetSample createSample(std::vector<std::string> vec);
-public:
-	virtual ~BaseBuilder() {
-	}
-	virtual Impulse::Dataset build() = 0;
-};
+        class BaseBuilder {
+        protected:
+            Impulse::Dataset dataset;
 
-}
+            Impulse::DatasetSample createSample(std::vector<std::string> vec);
+
+        public:
+            virtual ~BaseBuilder() {
+            }
+
+            virtual Impulse::Dataset build() = 0;
+        };
+
+    }
 
 }
 

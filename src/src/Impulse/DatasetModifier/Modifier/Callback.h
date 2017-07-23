@@ -10,25 +10,27 @@
 
 namespace Impulse {
 
-namespace DatasetModifier {
+    namespace DatasetModifier {
 
-namespace Modifier {
+        namespace Modifier {
 
-class Callback: public BaseDatasetModifier {
-protected:
-	std::function<std::string(std::string)> callback;
-public:
-	Callback(Impulse::Dataset * dataset) :
-			BaseDatasetModifier(dataset) {
-	}
-	void setCallback(std::function<std::string(std::string)> cb);
-	void applyToColumn(int columnIndex);
+            class Callback : public BaseDatasetModifier {
+            protected:
+                std::function<std::string(std::string)> callback;
+            public:
+                Callback(Impulse::Dataset *dataset) :
+                        BaseDatasetModifier(dataset) {
+                }
 
-};
+                void setCallback(std::function<std::string(std::string)> cb);
 
-}
+                void applyToColumn(int columnIndex);
 
-}
+            };
+
+        }
+
+    }
 
 }
 

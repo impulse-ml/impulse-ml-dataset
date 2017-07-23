@@ -9,25 +9,28 @@
 
 namespace Impulse {
 
-namespace DatasetModifier {
+    namespace DatasetModifier {
 
-namespace Modifier {
+        namespace Modifier {
 
-class ZScoresScaling: public BaseDatasetModifier {
-public:
-	ZScoresScaling(Impulse::Dataset * dataset) :
-			BaseDatasetModifier(dataset) {
+            class ZScoresScaling : public BaseDatasetModifier {
+            public:
+                ZScoresScaling(Impulse::Dataset *dataset) :
+                        BaseDatasetModifier(dataset) {
 
-	}
-	virtual ~ZScoresScaling() {
-	}
-	void applyToColumn(int columnIndex);
-	std::vector<double> applyToSample(std::initializer_list<double> list);
-};
+                }
 
-}
+                virtual ~ZScoresScaling() {
+                }
 
-}
+                void applyToColumn(int columnIndex);
+
+                std::vector<double> applyToSample(std::initializer_list<double> list);
+            };
+
+        }
+
+    }
 
 }
 

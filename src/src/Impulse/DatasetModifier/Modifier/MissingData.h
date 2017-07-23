@@ -6,25 +6,27 @@
 
 namespace Impulse {
 
-namespace DatasetModifier {
+    namespace DatasetModifier {
 
-namespace Modifier {
+        namespace Modifier {
 
-class MissingData: public BaseDatasetModifier {
-protected:
-	std::string modificationType = "mean";
-public:
-	MissingData(Impulse::Dataset * dataset) :
-			BaseDatasetModifier(dataset) {
+            class MissingData : public BaseDatasetModifier {
+            protected:
+                std::string modificationType = "mean";
+            public:
+                MissingData(Impulse::Dataset *dataset) :
+                        BaseDatasetModifier(dataset) {
 
-	}
-	void setModificationType(std::string type);
-	void applyToColumn(int columnIndex);
-};
+                }
 
-}
+                void setModificationType(std::string type);
 
-}
+                void applyToColumn(int columnIndex);
+            };
+
+        }
+
+    }
 
 }
 

@@ -2,13 +2,13 @@
 
 namespace Impulse {
 
-namespace DatasetBuilder {
+    namespace DatasetBuilder {
 
-Impulse::DatasetSample BaseBuilder::createSample(std::vector<std::string> vec) {
-	Impulse::DatasetSample sample(vec);
-	return sample;
-}
+        Impulse::DatasetSample BaseBuilder::createSample(std::vector<std::string> vec) {
+            Impulse::DatasetSample sample(vec);
+            return sample;
+        }
 
-}
+    }
 
 }

@@ -8,22 +8,23 @@
 
 namespace Impulse {
 
-namespace DatasetModifier {
+    namespace DatasetModifier {
 
-namespace Modifier {
+        namespace Modifier {
 
-class Category: public BaseDatasetModifier {
-public:
-	Category(Impulse::Dataset * dataset) :
-			BaseDatasetModifier(dataset) {
+            class Category : public BaseDatasetModifier {
+            public:
+                Category(Impulse::Dataset *dataset) :
+                        BaseDatasetModifier(dataset) {
 
-	}
-	void applyToColumn(int columnIndex);
-};
+                }
 
-}
+                void applyToColumn(int columnIndex);
+            };
 
-}
+        }
+
+    }
 
 }
 

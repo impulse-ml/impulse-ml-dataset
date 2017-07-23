@@ -7,22 +7,23 @@
 
 namespace Impulse {
 
-namespace DatasetModifier {
+    namespace DatasetModifier {
 
-namespace Modifier {
+        namespace Modifier {
 
-class MinMaxScaling: public BaseDatasetModifier {
-public:
-	MinMaxScaling(Impulse::Dataset * dataset) :
-			BaseDatasetModifier(dataset) {
+            class MinMaxScaling : public BaseDatasetModifier {
+            public:
+                MinMaxScaling(Impulse::Dataset *dataset) :
+                        BaseDatasetModifier(dataset) {
 
-	}
-	void applyToColumn(int columnIndex);
-};
+                }
 
-}
+                void applyToColumn(int columnIndex);
+            };
 
-}
+        }
+
+    }
 
 }
 

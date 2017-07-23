@@ -6,22 +6,23 @@
 
 namespace Impulse {
 
-struct SplittedDataset {
-	Impulse::SlicedDataset primary;
-	Impulse::SlicedDataset secondary;
-};
+    struct SplittedDataset {
+        Impulse::SlicedDataset primary;
+        Impulse::SlicedDataset secondary;
+    };
 
-namespace DatasetModifier {
+    namespace DatasetModifier {
 
-class DatasetSplitter {
-protected:
-	Impulse::SlicedDataset * slicedDataset;
-public:
-	DatasetSplitter(Impulse::SlicedDataset * slicedDataset);
-	Impulse::SplittedDataset split(double ratio);
-};
+        class DatasetSplitter {
+        protected:
+            Impulse::SlicedDataset *slicedDataset;
+        public:
+            DatasetSplitter(Impulse::SlicedDataset *slicedDataset);
 
-}
+            Impulse::SplittedDataset split(double ratio);
+        };
+
+    }
 
 }
 
