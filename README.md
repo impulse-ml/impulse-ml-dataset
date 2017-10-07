@@ -20,7 +20,7 @@ are transformed into binary categories: {<0|1>, <0|1>, <0,1>}
  - CategoryId transformation
 
 Given string data stacked in examples i.e.: {"Cat1", "Cat2", "Cat3", "Cat1"}
-are transformed into unique numbers: {0, 1, 2, 3}
+are transformed into unique numbers: 0, 1, 2, 3
 
  - MinMaxScaling [https://en.wikipedia.org/wiki/Feature_scaling#Rescaling]
  - ZScoresScaling [https://en.wikipedia.org/wiki/Feature_scaling#Standardization]
@@ -31,3 +31,7 @@ are transformed into unique numbers: {0, 1, 2, 3}
  - slicing: for dividing input set and output set
  - splitting: i.e. for train set, dev set and test set
 
+### TODO:
+ - use OpenMP
+ - implement export to file
+ - fix demo paths
