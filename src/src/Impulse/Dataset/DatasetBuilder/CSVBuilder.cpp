@@ -7,7 +7,7 @@ namespace Impulse {
         namespace DatasetBuilder {
 
             CSVBuilder::CSVBuilder(T_String path) {
-                this->path = path;
+                this->path = std::move(path);
             }
 
             CSVBuilder::~CSVBuilder() {
@@ -38,7 +38,7 @@ namespace Impulse {
                         case CSVState::UnquotedField:
                             switch (c) {
                                 case ',': // end of field
-                                    fields.push_back("");
+                                    fields.emplace_back("");
                                     i++;
                                     break;
                                 case '"':
@@ -62,7 +62,7 @@ namespace Impulse {
                         case CSVState::QuotedQuote:
                             switch (c) {
                                 case ',': // , after closing quote
-                                    fields.push_back("");
+                                    fields.emplace_back("");
                                     i++;
                                     state = CSVState::UnquotedField;
                                     break;
@@ -82,19 +82,20 @@ namespace Impulse {
             }
 
             Dataset CSVBuilder::build() {
+                Dataset dataset;
+
                 this->openFile();
 
                 T_String line;
                 while (std::getline(this->fileHandle, line)) {
                     T_StringVector fields = this->parseLine(line);
-                    this->dataset.addSample(this->createSample(fields));
+                    dataset.addSample(this->createSample(fields));
                 }
 
                 this->closeFile();
 
-                return this->dataset;
+                return dataset;
             }
-
         }
     }
 }

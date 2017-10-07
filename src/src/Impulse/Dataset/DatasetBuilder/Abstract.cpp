@@ -6,9 +6,8 @@ namespace Impulse {
 
         namespace DatasetBuilder {
 
-            DatasetSample Abstract::createSample(T_StringVector vec) {
-                DatasetSample sample(vec);
-                return sample;
+            DatasetSampleContainer Abstract::createSample(T_StringVector vec) {
+                return std::make_shared<Impulse::Dataset::DatasetSample>(std::move(vec));
             }
         }
     }

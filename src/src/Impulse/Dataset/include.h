@@ -14,6 +14,9 @@
 #include <cmath>
 #include <map>
 #include <cstdarg>
+#include <chrono>
+#include <utility>
+#include <memory>
 
 #include "common.h"
 #include "DatasetSample.h"
@@ -25,6 +28,7 @@
 #include "DatasetModifier/DatasetSplitter.h"
 #include "DatasetModifier/Modifier/Callback.h"
 #include "DatasetModifier/Modifier/Category.h"
+#include "DatasetModifier/Modifier/CategoryId.h"
 #include "DatasetModifier/Modifier/MinMaxScaling.h"
 #include "DatasetModifier/Modifier/MissingData.h"
 #include "DatasetModifier/Modifier/ZScoresScaling.h"

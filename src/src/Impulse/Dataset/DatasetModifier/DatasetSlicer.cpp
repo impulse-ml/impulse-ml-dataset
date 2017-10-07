@@ -1,44 +1,31 @@
 #include "../include.h"
 
-
 namespace Impulse {
 
     namespace Dataset {
 
         namespace DatasetModifier {
 
-            DatasetSlicer::DatasetSlicer(Dataset *_dataset) :
-                    dataset(_dataset) {
-
-            }
+            DatasetSlicer::DatasetSlicer(Dataset &dataset) : dataset(dataset) {}
 
             SlicedDataset DatasetSlicer::slice() {
                 Dataset input;
                 Dataset output;
+                DatasetData samples = this->dataset.getSamples();
 
-                DatasetData *samples = this->dataset->getSamples();
+                for (auto &oldSample : samples) {
+                    T_StringVector inputSampleData;
+                    T_StringVector outputSampleData;
 
-                for (T_Size i = 0; i < samples->size(); i++) {
-                    DatasetSample oldSample = samples->at(i);
-                    T_StringVector newInputSampleData;
-                    T_StringVector newOutputSampleData;
-
-                    T_Size j;
-
-                    for (j = 0; j < this->inputColumns.size(); j++) {
-                        newInputSampleData.push_back(
-                                oldSample.getColumnToString(this->inputColumns.at(j)));
+                    for (int i : this->inputColumns) {
+                        inputSampleData.push_back(oldSample->getColumnToString(i));
                     }
-                    DatasetSample newInputSample(newInputSampleData);
-                    input.addSample(newInputSample);
+                    input.addSample(std::make_shared<Impulse::Dataset::DatasetSample>(std::move(inputSampleData)));
 
-                    for (j = 0; j < this->outputColumns.size(); j++) {
-                        newOutputSampleData.push_back(
-                                oldSample.getColumnToString(this->outputColumns.at(j)));
+                    for (int i : this->outputColumns) {
+                        outputSampleData.push_back(oldSample->getColumnToString(i));
                     }
-
-                    DatasetSample newOutputSample(newOutputSampleData);
-                    output.addSample(newOutputSample);
+                    output.addSample(std::make_shared<Impulse::Dataset::DatasetSample>(std::move(outputSampleData)));
                 }
 
                 SlicedDataset result;
@@ -55,8 +42,6 @@ namespace Impulse {
             void DatasetSlicer::addOutputColumn(int columnIndex) {
                 this->outputColumns.push_back(columnIndex);
             }
-
         }
     }
-
 }

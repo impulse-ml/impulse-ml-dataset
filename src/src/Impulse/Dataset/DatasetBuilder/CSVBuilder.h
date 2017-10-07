@@ -28,13 +28,12 @@ namespace Impulse {
                 T_StringVector parseLine(T_String &line);
 
             public:
-                CSVBuilder(T_String p);
+                explicit CSVBuilder(T_String p);
 
-                virtual ~CSVBuilder();
+                ~CSVBuilder() override;
 
-                virtual Dataset build();
+                Dataset build() override;
             };
-
         }
     }
 }

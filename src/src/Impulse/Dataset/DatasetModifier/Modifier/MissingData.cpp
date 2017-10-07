@@ -1,6 +1,5 @@
 #include "../../include.h"
 
-
 namespace Impulse {
 
     namespace Dataset {
@@ -10,41 +9,37 @@ namespace Impulse {
             namespace Modifier {
 
                 void MissingData::setModificationType(T_String type) {
-                    this->modificationType = type;
+                    this->modificationType = std::move(type);
                 }
 
                 void MissingData::applyToColumn(int columnIndex) {
-                    double sum = 0;
-                    std::vector<int> rowsToFill;
-                    DatasetData *samples = this->dataset->getSamples();
-                    T_Size i;
-                    T_Size j = 0;
-                    double valueToFill;
+                    DatasetData samples = this->dataset.getSamples();
+                    T_IntVector rowsToFill;
+                    T_Size correctSamplesCount = 0;
+                    double sum = 0.0;
+                    double valueToFill = 0;
+                    int rowIndex = 0;
 
-                    for (i = 0; i < samples->size(); i++) {
-                        DatasetSample *sample = &samples->at(i);
+                    for (auto &sample : samples) {
                         T_String columnValue = sample->getColumnToString(columnIndex);
-                        if (columnValue.length() > 0) {
-                            sum += sample->getColumnToDouble(columnIndex);
-                            j++;
+                        if (columnValue.length() == 0) {
+                            rowsToFill.push_back(rowIndex);
                         } else {
-                            rowsToFill.push_back(i);
+                            sum += sample->getColumnToDouble(columnIndex);
+                            correctSamplesCount++;
                         }
+                        rowIndex++;
                     }
 
                     if (this->modificationType == "mean") {
-                        valueToFill = sum / j;
+                        valueToFill = sum / (double) correctSamplesCount;
                     }
 
-                    for (i = 0; i < rowsToFill.size(); i++) {
-                        Impulse::Dataset::DatasetSample *sample = this->dataset->getSampleAt(rowsToFill.at(i));
-                        sample->setColumn(columnIndex, valueToFill);
+                    for (int i : rowsToFill) {
+                        this->dataset.getSampleAt(i)->setColumn(columnIndex, valueToFill);
                     }
                 }
-
             }
-
         }
     }
-
 }

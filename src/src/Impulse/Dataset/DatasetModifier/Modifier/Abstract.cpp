@@ -8,17 +8,11 @@ namespace Impulse {
 
             namespace Modifier {
 
-                Abstract::Abstract(Dataset *_dataset) :
-                        dataset(_dataset) {
-
-                }
+                Abstract::Abstract(Dataset &dataset) : dataset(dataset) {}
 
                 void Abstract::apply() {
-                    DatasetData *samples = this->dataset->getSamples();
-                    if (samples->size() > 0) {
-                        for (T_Size i = 0; i < samples->at(0).getSize(); i++) {
-                            this->applyToColumn(i);
-                        }
+                    for (T_Size i = 0; i < this->dataset.getColumnsSize(); i++) {
+                        this->applyToColumn(i);
                     }
                 }
             }

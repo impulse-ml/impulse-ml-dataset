@@ -8,12 +8,8 @@ namespace Impulse {
             this->data.clear();
         }
 
-        void Dataset::addSample(DatasetSample sample) {
+        void Dataset::addSample(DatasetSampleContainer sample) {
             this->data.push_back(sample);
-        }
-
-        void Dataset::addSample(DatasetSample *sample) {
-            this->data.push_back(sample->copy());
         }
 
         void Dataset::out(T_Size limit) {
@@ -22,28 +18,41 @@ namespace Impulse {
                     if (i + 1 == limit)
                         break;
 
-                this->data.at(i).out();
+                this->data.at(i).get()->out();
             }
             std::cout << "---" << std::endl;
         }
 
-        DatasetData *Dataset::getSamples() {
-            return &this->data;
+        DatasetData &Dataset::getSamples() {
+            return this->data;
         }
 
-        DatasetSample *Dataset::getSampleAt(int index) {
-            return &this->data.at(index);
+        DatasetSampleContainer Dataset::getSampleAt(int index) {
+            return this->data.at(static_cast<unsigned long>(index));
         }
 
         T_Size Dataset::getSize() {
-            return this->data.size();
+            return (T_Size) this->data.size();
         }
 
         T_Size Dataset::getColumnsSize() {
             if (this->getSize() > 0) {
-                return this->data.at(0).getSize();
+                return this->data.at(0).get()->getSize();
             }
             return 0;
+        }
+
+        Eigen::MatrixXd Dataset::exportToEigen() {
+            DatasetData samples = this->getSamples();
+            int row = 0;
+            Eigen::MatrixXd result;
+
+            result.resize(this->getSize(), this->getColumnsSize());
+            for (auto &sample : samples) {
+                result.row(row++) = sample->exportToEigen();
+            }
+
+            return result;
         }
     }
 }

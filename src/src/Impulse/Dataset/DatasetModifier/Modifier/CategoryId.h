@@ -1,5 +1,5 @@
-#ifndef IMPULSE_DATASET_DATASETMODIFIER_MODIFIER_CATEGORY_H
-#define IMPULSE_DATASET_DATASETMODIFIER_MODIFIER_CATEGORY_H
+#ifndef IMPULSE_DATASET_DATASETMODIFIER_MODIFIER_CATEGORYID_H
+#define IMPULSE_DATASET_DATASETMODIFIER_MODIFIER_CATEGORYID_H
 
 #include "../../include.h"
 
@@ -13,9 +13,9 @@ namespace Impulse {
 
             namespace Modifier {
 
-                class Category : public Abstract {
+                class CategoryId : public Abstract {
                 public:
-                    explicit Category(Dataset &dataset) : Abstract(dataset) {}
+                    explicit CategoryId(Dataset &dataset) : Abstract(dataset) {}
 
                     void applyToColumn(int columnIndex) override;
                 };
@@ -24,4 +24,4 @@ namespace Impulse {
     }
 }
 
-#endif//IMPULSE_DATASET_DATASETMODIFIER_MODIFIER_CATEGORY_H
+#endif//IMPULSE_DATASET_DATASETMODIFIER_MODIFIER_CATEGORYID_H

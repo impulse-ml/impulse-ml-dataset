@@ -9,7 +9,8 @@ namespace Impulse {
 
     namespace Dataset {
 
-        typedef std::vector<DatasetSample> DatasetData;
+        typedef std::shared_ptr<DatasetSample> DatasetSampleContainer;
+        typedef std::vector<DatasetSampleContainer> DatasetData;
 
         class Dataset {
         protected:
@@ -17,19 +18,19 @@ namespace Impulse {
         public:
             ~Dataset();
 
-            void addSample(DatasetSample sample);
+            void addSample(DatasetSampleContainer sample);
 
-            void addSample(DatasetSample *sample);
+            DatasetData &getSamples();
 
-            DatasetData *getSamples();
-
-            DatasetSample *getSampleAt(int index);
+            DatasetSampleContainer getSampleAt(int index);
 
             void out(T_Size limit = 10);
 
             T_Size getSize();
 
             T_Size getColumnsSize();
+
+            Eigen::MatrixXd exportToEigen();
         };
     }
 }

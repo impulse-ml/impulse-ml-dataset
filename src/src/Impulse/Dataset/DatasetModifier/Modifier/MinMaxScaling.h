@@ -15,19 +15,13 @@ namespace Impulse {
 
                 class MinMaxScaling : public Abstract {
                 public:
-                    MinMaxScaling(Dataset *dataset) :
-                            Abstract(dataset) {
+                    explicit MinMaxScaling(Dataset &dataset) : Abstract(dataset) {}
 
-                    }
-
-                    void applyToColumn(int columnIndex);
+                    void applyToColumn(int columnIndex) override;
                 };
-
             }
-
         }
     }
-
 }
 
 #endif//IMPULSE_DATASET_DATASETMODIFIER_MODIFIER_MINMAXSCALING_H

@@ -1,73 +1,33 @@
 # impulse-ml
 
-## impulse-ml-dataset
+## Description
 
-```cpp
-#include "src/Impulse/Dataset/include.h"
+This library can be used to manage datasets used in other impulse-ml
+libraries.
 
-using namespace Impulse::Dataset;
+It supports:
 
-int main() {
-    // build dataset from csv...
-    DatasetBuilder::CSVBuilder builder(
-            "/home/hud/eclipse-workspace/impulse-ml-dataset/src/data/data.csv");
-    Dataset dataset = builder.build();
-    dataset.out();
+###### Importing:
+ - Loading data from CSV
 
-    // and start modification - slice to input-output pair
-    DatasetModifier::DatasetSlicer datasetSlicer(&dataset);
-    datasetSlicer.addInputColumn(0);
-    datasetSlicer.addInputColumn(1);
-    datasetSlicer.addInputColumn(2);
-    datasetSlicer.addOutputColumn(3);
+###### Column transformations:
+ - Category transformation
 
-    SlicedDataset slicedDataset = datasetSlicer.slice();
-    slicedDataset.input.out();
-    slicedDataset.output.out();
+Given string data stacked in examples i.e.: {"Cat1", "Cat2", "Cat3", "Cat1"}
+are transformed into binary categories: {<0|1>, <0|1>, <0,1>}
+(3 unique categories)
 
-    // fill missing data by mean of fields
-    DatasetModifier::Modifier::MissingData missingDataModifier(
-            &slicedDataset.input);
-    missingDataModifier.setModificationType("mean");
-    missingDataModifier.applyToColumn(1);
-    missingDataModifier.applyToColumn(2);
+ - CategoryId transformation
 
-    slicedDataset.input.out();
+Given string data stacked in examples i.e.: {"Cat1", "Cat2", "Cat3", "Cat1"}
+are transformed into unique numbers: {0, 1, 2, 3}
 
-    DatasetModifier::Modifier::Category categoryModifier(
-            &slicedDataset.input);
-    categoryModifier.applyToColumn(0);
+ - MinMaxScaling [https://en.wikipedia.org/wiki/Feature_scaling#Rescaling]
+ - ZScoresScaling [https://en.wikipedia.org/wiki/Feature_scaling#Standardization]
+ - MissingData - it can create mean values for missing data in example columns
 
-    slicedDataset.input.out();
+###### Dataset transformations
 
-    // convert last column "Yes/No" to numbers
-    DatasetModifier::Modifier::Callback callbackModifier(
-            &slicedDataset.output);
-    callbackModifier.setCallback([](T_String oldValue) -> T_String {
-        if (oldValue.find("Yes") != T_String::npos) {
-            return "1";
-        }
-        return "0";
-    });
-    callbackModifier.applyToColumn(0);
+ - slicing: for dividing input set and output set
+ - splitting: i.e. for train set, dev set and test set
 
-    slicedDataset.output.out();
-
-    // scale all input
-    DatasetModifier::Modifier::ZScoresScaling zScoresModifier(
-            &slicedDataset.input);
-
-    zScoresModifier.apply();
-
-    // we can split dataset by parts of given ratio
-    DatasetModifier::DatasetSplitter datasetSplitter(&slicedDataset);
-    SplittedDataset splittedDataset = datasetSplitter.split(0.8);
-
-    splittedDataset.primary.input.out();
-    splittedDataset.primary.output.out();
-    splittedDataset.secondary.input.out();
-    splittedDataset.secondary.output.out();
-
-    return 0;
-};
-```

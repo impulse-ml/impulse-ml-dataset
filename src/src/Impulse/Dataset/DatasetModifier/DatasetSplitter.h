@@ -5,7 +5,6 @@
 
 using namespace Impulse::Dataset;
 
-
 namespace Impulse {
 
     namespace Dataset {
@@ -19,16 +18,15 @@ namespace Impulse {
 
             class DatasetSplitter {
             protected:
-                SlicedDataset *slicedDataset;
+                SlicedDataset &slicedDataset;
+
             public:
-                DatasetSplitter(SlicedDataset *slicedDataset);
+                explicit DatasetSplitter(SlicedDataset &slicedDataset);
 
                 SplittedDataset split(double ratio);
             };
-
         }
     }
-
 }
 
 #endif//IMPULSE_DATASET_DATASETMODIFIER_DATASETSPLITTER_H_

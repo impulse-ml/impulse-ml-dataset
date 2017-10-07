@@ -9,57 +9,37 @@ namespace Impulse {
             namespace Modifier {
 
                 void ZScoresScaling::applyToColumn(int columnIndex) {
-                    DatasetData *samples = this->dataset->getSamples();
-                    T_Size i;
-                    double sum;
-                    double mean;
-                    double count = 0.0;
+                    DatasetData samples = this->dataset.getSamples();
+                    auto count = (double) samples.size();
+                    double sum = 0.0;
                     double variance = 0.0;
                     double standardDeviation;
+                    double mean;
 
-                    for (i = 0; i < samples->size(); i++) {
-                        double value = samples->at(i).getColumnToDouble(columnIndex);
-                        sum += value;
-                        count += 1.0;
+                    for (auto &sample : samples) {
+                        sum += sample->getColumnToDouble(columnIndex);
                     }
 
                     mean = sum / count;
 
-                    for (i = 0; i < samples->size(); i++) {
-                        double value = samples->at(i).getColumnToDouble(columnIndex);
+                    for (auto &sample : samples) {
+                        double value = sample->getColumnToDouble(columnIndex);
                         variance += pow(value - mean, 2.0);
                     }
 
                     standardDeviation = sqrt((1.0 / count) * variance);
 
-                    for (i = 0; i < samples->size(); i++) {
-                        double value = samples->at(i).getColumnToDouble(columnIndex);
+                    for (auto &sample : samples) {
+                        double value = sample->getColumnToDouble(columnIndex);
                         double newValue = (value - mean) / standardDeviation;
-                        samples->at(i).setColumn(columnIndex, newValue);
+                        sample->setColumn(columnIndex, newValue);
                     }
 
-                    this->data["mean"][columnIndex] = std::to_string(mean);
-                    this->data["standardDeviation"][columnIndex] = std::to_string(
+                    this->data["mean"][columnIndex] = toString(mean);
+                    this->data["standardDeviation"][columnIndex] = toString(
                             standardDeviation);
                 }
-
-                T_DoubleVector ZScoresScaling::applyToSample(
-                        std::initializer_list<double> list) {
-                    T_DoubleVector result;
-                    for (auto i = list.begin(); i != list.end(); i++) {
-                        result.push_back(*i);
-                    }
-                    for (T_Size j = 0; j < result.size(); j++) {
-                        double mean = std::stod(this->data["mean"][j]);
-                        double standardDeviation = std::stod(
-                                this->data["standardDeviation"][j]);
-                        result.at(j) = ((result.at(j) - mean) / standardDeviation);
-                    }
-                    return result;
-                }
-
             }
-
         }
     }
 }

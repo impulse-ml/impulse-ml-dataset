@@ -15,19 +15,12 @@ namespace Impulse {
 
                 class ZScoresScaling : public Abstract {
                 public:
-                    ZScoresScaling(Dataset *dataset) :
-                            Abstract(dataset) {
+                    explicit ZScoresScaling(Dataset &dataset) : Abstract(dataset) {}
 
-                    }
+                    ~ZScoresScaling() override = default;
 
-                    virtual ~ZScoresScaling() {
-                    }
-
-                    void applyToColumn(int columnIndex);
-
-                    T_DoubleVector applyToSample(std::initializer_list<double> list);
+                    void applyToColumn(int columnIndex) override;
                 };
-
             }
         }
     }

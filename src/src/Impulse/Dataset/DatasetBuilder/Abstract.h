@@ -13,16 +13,13 @@ namespace Impulse {
 
             class Abstract {
             protected:
-                Dataset dataset;
-
-                DatasetSample createSample(T_StringVector vec);
+                DatasetSampleContainer createSample(T_StringVector vec);
 
             public:
                 virtual Dataset build() = 0;
 
-                virtual ~Abstract() {}
+                virtual ~Abstract() = default;
             };
-
         }
     }
 }

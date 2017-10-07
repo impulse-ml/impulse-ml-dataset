@@ -16,22 +16,17 @@ namespace Impulse {
                 class MissingData : public Abstract {
                 protected:
                     T_String modificationType = "mean";
-                public:
-                    MissingData(Dataset *dataset) :
-                            Abstract(dataset) {
 
-                    }
+                public:
+                    explicit MissingData(Dataset &dataset) : Abstract(dataset) {}
 
                     void setModificationType(T_String type);
 
-                    void applyToColumn(int columnIndex);
+                    void applyToColumn(int columnIndex) override;
                 };
-
             }
-
         }
     }
-
 }
 
 #endif//IMPULSE_DATASET_DATASETMODIFIER_MODIFIER_MISSINGDATA_H

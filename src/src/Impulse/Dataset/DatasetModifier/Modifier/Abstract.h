@@ -15,15 +15,15 @@ namespace Impulse {
 
                 class Abstract {
                 protected:
-                    Dataset *dataset;
+                    Dataset &dataset;
                     std::map<T_String, std::map<double, T_String>> data;
+
                 public:
-                    Abstract(Dataset *dataset);
+                    explicit Abstract(Dataset &dataset);
 
-                    virtual ~Abstract() {
-                    }
+                    virtual ~Abstract() = default;
 
-                    void apply(void);
+                    void apply();
 
                     virtual void applyToColumn(int columnIndex) = 0;
                 };

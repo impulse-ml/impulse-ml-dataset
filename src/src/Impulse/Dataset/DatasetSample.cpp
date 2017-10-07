@@ -5,7 +5,7 @@ namespace Impulse {
     namespace Dataset {
 
         DatasetSample::DatasetSample(T_StringVector vec) {
-            this->rawData = vec;
+            this->rawData = std::move(vec);
         }
 
         DatasetSample::DatasetSample(T_StringVector *vec) {
@@ -13,14 +13,14 @@ namespace Impulse {
         }
 
         DatasetSample::DatasetSample(T_DoubleVector vec) {
-            for (T_Size i = 0; i < vec.size(); i++) {
-                this->rawData.push_back(std::to_string(vec.at(i)));
+            for (double i : vec) {
+                this->rawData.push_back(toString(i));
             }
         }
 
         DatasetSample::DatasetSample(std::initializer_list<double> list) {
-            for (auto i = list.begin(); i != list.end(); i++) {
-                this->rawData.push_back(std::to_string(*i));
+            for (double i : list) {
+                this->rawData.push_back(toString(i));
             }
         }
 
@@ -32,24 +32,24 @@ namespace Impulse {
         }
 
         T_String DatasetSample::getColumnToString(int columnIndex) {
-            return this->rawData.at(columnIndex);
+            return this->rawData.at(static_cast<unsigned long>(columnIndex));
         }
 
         double DatasetSample::getColumnToDouble(int columnIndex) {
-            return std::stod(this->getColumnToString(columnIndex));
+            return toDouble(this->getColumnToString(columnIndex));
         }
 
         void DatasetSample::setColumn(int columnIndex, T_String value) {
-            this->rawData.at(columnIndex) = value;
+            this->rawData.at(static_cast<unsigned long>(columnIndex)) = std::move(value);
         }
 
         void DatasetSample::setColumn(int columnIndex, double value) {
-            this->rawData.at(columnIndex) = std::to_string(value);
+            this->rawData.at(static_cast<unsigned long>(columnIndex)) = toString(value);
         }
 
-        void DatasetSample::setColumn(int columnIndex,
-                                      std::function<T_String(T_String)> callback) {
-            this->rawData.at(columnIndex) = callback(this->rawData.at(columnIndex));
+        void DatasetSample::setColumn(int columnIndex, std::function<T_String(T_String)> callback) {
+            this->rawData.at(static_cast<unsigned long>(columnIndex)) = callback(this->rawData.at(
+                    static_cast<unsigned long>(columnIndex)));
         }
 
         void DatasetSample::insertColumnAfter(int columnIndex, T_String value) {
@@ -61,21 +61,7 @@ namespace Impulse {
         }
 
         T_Size DatasetSample::getSize() {
-            return this->rawData.size();
-        }
-
-        Impulse::Dataset::DatasetSample DatasetSample::copy() {
-            T_StringVector copiedData(this->rawData);
-            Impulse::Dataset::DatasetSample result(copiedData);
-            return result;
-        }
-
-        T_DoubleVector DatasetSample::exportToDoubleVector() {
-            T_DoubleVector result;
-            for (T_Size i = 0; i < this->getSize(); i++) {
-                result.push_back(this->getColumnToDouble(i));
-            }
-            return result;
+            return (T_Size) this->rawData.size();
         }
 
         Eigen::VectorXd DatasetSample::exportToEigen() {

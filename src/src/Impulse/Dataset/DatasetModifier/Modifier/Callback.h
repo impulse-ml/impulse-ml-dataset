@@ -16,22 +16,17 @@ namespace Impulse {
                 class Callback : public Abstract {
                 protected:
                     std::function<T_String(T_String)> callback;
+
                 public:
-                    Callback(Dataset *dataset) :
-                            Abstract(dataset) {
-                    }
+                    explicit Callback(Dataset &dataset) : Abstract(dataset) {}
 
                     void setCallback(std::function<T_String(T_String)> cb);
 
-                    void applyToColumn(int columnIndex);
-
+                    void applyToColumn(int columnIndex) override;
                 };
-
             }
-
         }
     }
-
 }
 
 #endif//IMPULSE_DATASET_DATASETMODIFIER_MODIFIER_CALLBACK_H

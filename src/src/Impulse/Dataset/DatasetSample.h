@@ -13,11 +13,11 @@ namespace Impulse {
         protected:
             T_StringVector rawData;
         public:
-            DatasetSample(T_StringVector vec);
+            explicit DatasetSample(T_StringVector vec);
 
-            DatasetSample(T_StringVector *vec);
+            explicit DatasetSample(T_StringVector *vec);
 
-            DatasetSample(T_DoubleVector vec);
+            explicit DatasetSample(T_DoubleVector vec);
 
             DatasetSample(std::initializer_list<double> list);
 
@@ -31,18 +31,13 @@ namespace Impulse {
 
             void setColumn(int columnIndex, double value);
 
-            void setColumn(int columnIndex,
-                           std::function<T_String(T_String)> callback);
+            void setColumn(int columnIndex, std::function<T_String(T_String)> callback);
 
             void insertColumnAfter(int columnIndex, T_String value);
 
             void removeColumnAt(int columnIndex);
 
             T_Size getSize();
-
-            DatasetSample copy();
-
-            T_DoubleVector exportToDoubleVector();
 
             Eigen::VectorXd exportToEigen();
         };
