@@ -1,5 +1,4 @@
-#ifndef IMPULSE_DATASET_COMMON_H
-#define IMPULSE_DATASET_COMMON_H
+#pragma once
 
 #include "include.h"
 
@@ -22,5 +21,3 @@ namespace Impulse {
         double MAX(double value1, double value2);
     }
 }
-
-#endif//IMPULSE_DATASET_COMMON_H

@@ -1,5 +1,4 @@
-#ifndef IMPULSE_DATASET_DATASET_H
-#define IMPULSE_DATASET_DATASET_H
+#pragma once
 
 #include "include.h"
 
@@ -34,5 +33,3 @@ namespace Impulse {
         };
     }
 }
-
-#endif//IMPULSRE

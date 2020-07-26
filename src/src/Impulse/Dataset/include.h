@@ -1,5 +1,4 @@
-#ifndef IMPULSE_DATASET_INCLUDE_H
-#define IMPULSE_DATASET_INCLUDE_H
+#pragma once
 
 #include <eigen3/Eigen/Core>
 #include <eigen3/Eigen/Dense>
@@ -32,5 +31,4 @@
 #include "DatasetModifier/Modifier/MinMaxScaling.h"
 #include "DatasetModifier/Modifier/MissingData.h"
 #include "DatasetModifier/Modifier/ZScoresScaling.h"
-
-#endif//IMPULSE_DATASET_INCLUDE_H
+#include "DatasetExporter.h"

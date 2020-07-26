@@ -1,5 +1,4 @@
-#ifndef IMPULSE_DATASET_DATASETMODIFIER_DATASETSPLITTER_H_
-#define IMPULSE_DATASET_DATASETMODIFIER_DATASETSPLITTER_H_
+#pragma once
 
 #include "../include.h"
 
@@ -9,24 +8,22 @@ namespace Impulse {
 
     namespace Dataset {
 
-        struct SplittedDataset {
-            SlicedDataset primary;
-            SlicedDataset secondary;
+        struct SplitDataset {
+            Dataset primary;
+            Dataset secondary;
         };
 
         namespace DatasetModifier {
 
             class DatasetSplitter {
             protected:
-                SlicedDataset &slicedDataset;
+                Dataset &dataset;
 
             public:
-                explicit DatasetSplitter(SlicedDataset &slicedDataset);
+                explicit DatasetSplitter(Dataset &slicedDataset);
 
-                SplittedDataset split(double ratio);
+                SplitDataset split(double ratio);
             };
         }
     }
 }
-
-#endif//IMPULSE_DATASET_DATASETMODIFIER_DATASETSPLITTER_H_

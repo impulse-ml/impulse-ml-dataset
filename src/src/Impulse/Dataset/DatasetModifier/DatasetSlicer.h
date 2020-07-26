@@ -1,5 +1,4 @@
-#ifndef IMPULSE_DATASET_DATASETMODIFIER_DATASETSLICER_H
-#define IMPULSE_DATASET_DATASETMODIFIER_DATASETSLICER_H
+#pragma once
 
 #include "../include.h"
 
@@ -36,5 +35,3 @@ namespace Impulse {
         }
     }
 }
-
-#endif//
