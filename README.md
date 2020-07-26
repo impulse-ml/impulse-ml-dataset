@@ -67,3 +67,13 @@ It split dataset to learning and test set.
 ```-v``` verbose output (limited to 10 rows)
 
 ```-o``` output path
+
+## Build
+
+```git clone git@github.com:impulse-ml/impulse-ml-dataset```
+
+```cd impulse-ml-dataset```
+
+```mkdir build && cd build```
+
+```cmake ..```
