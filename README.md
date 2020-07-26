@@ -35,3 +35,35 @@ are transformed into unique numbers: 0, 1, 2, 3
  - use OpenMP
  - implement export to file
  - fix demo paths
+
+## Console usage:
+
+### impulse-ml-dataset-slicer
+
+It slice dataset to input and output .csv files.
+
+```./impulse-ml-dataset-slicer -i ../src/data/data.csv --input-columns 0,1 --output-columns 2,3 -v -o .```
+
+```-i``` - input path to .csv file
+
+```---input-columns``` input columns from 0 to n - 1
+
+```---output-columns``` output columns from 0 to n - 1
+
+```-v``` verbose output (limited to 10 rows)
+
+```-o``` output path
+
+### impulse-ml-dataset-spliter
+
+It split dataset to learning and test set.
+
+```./impulse-ml-dataset-spliter -i ../src/data/data.csv --ratio 0.8 -v -o .```
+
+```-i``` - input path to .csv file
+
+```---ratio``` split ratio, i.e. ```0.8```
+
+```-v``` verbose output (limited to 10 rows)
+
+```-o``` output path

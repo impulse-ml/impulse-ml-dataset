@@ -1,5 +1,4 @@
-#ifndef IMPULSE_DATASET_DATASETBUILDER_ABSTRACT_H
-#define IMPULSE_DATASET_DATASETBUILDER_ABSTRACT_H
+#pragma once
 
 #include "../include.h"
 
@@ -23,5 +22,3 @@ namespace Impulse {
         }
     }
 }
-
-#endif//IMPULSE_DATASET_DATASETBUILDER_ABSTRACT_H

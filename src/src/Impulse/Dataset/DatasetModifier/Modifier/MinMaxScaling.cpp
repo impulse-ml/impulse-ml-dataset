@@ -12,7 +12,6 @@ namespace Impulse {
                     DatasetData samples = this->dataset.getSamples();
                     double min = std::numeric_limits<double>::max();
                     double max = std::numeric_limits<double>::min();
-                    T_Size i;
 
                     for (auto &sample : samples) {
                         double value = sample->getColumnToDouble(columnIndex);

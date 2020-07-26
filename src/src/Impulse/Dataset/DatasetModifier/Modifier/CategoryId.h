@@ -1,5 +1,4 @@
-#ifndef IMPULSE_DATASET_DATASETMODIFIER_MODIFIER_CATEGORYID_H
-#define IMPULSE_DATASET_DATASETMODIFIER_MODIFIER_CATEGORYID_H
+#pragma once
 
 #include "../../include.h"
 
@@ -23,5 +22,3 @@ namespace Impulse {
         }
     }
 }
-
-#endif//IMPULSE_DATASET_DATASETMODIFIER_MODIFIER_CATEGORYID_H

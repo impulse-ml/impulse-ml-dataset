@@ -1,5 +1,4 @@
-#ifndef IMPULSE_DATASET_DATASETBUILDER_CSVBUILDER_H
-#define IMPULSE_DATASET_DATASETBUILDER_CSVBUILDER_H
+#pragma once
 
 #include "../include.h"
 
@@ -37,5 +36,3 @@ namespace Impulse {
         }
     }
 }
-
-#endif//IMPULSE_DATASET_DATASETBUILDER_CSVBUILDER_H

@@ -11,7 +11,6 @@ namespace Impulse {
                 void Category::applyToColumn(int columnIndex) {
                     DatasetData samples = this->dataset.getSamples();
                     T_StringVector categories;
-                    T_Size i;
 
                     for (auto &sample : samples) {
                         T_String category = sample->getColumnToString(columnIndex);
