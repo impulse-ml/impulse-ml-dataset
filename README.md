@@ -68,6 +68,22 @@ It split dataset to learning and test set.
 
 ```-o``` output path
 
+### impulse-ml-dataset-modifier
+
+It modifies content of dataset
+
+```./impulse-ml-dataset-modifier -i ../src/data/data.csv --modifier category --columns 0 -v -o data.csv```
+
+```-i``` - input path to .csv file
+
+```---modifier``` one of 'category', 'zscores', 'minmax', 'missing'
+
+```--columns``` columns separated by comma
+
+```-v``` verbose output (limited to 10 rows)
+
+```-o``` output path
+
 ## Build
 
 ```git clone git@github.com:impulse-ml/impulse-ml-dataset```
